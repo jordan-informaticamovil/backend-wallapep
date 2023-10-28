@@ -83,7 +83,7 @@ usersService = {
 
         return user.insertId;
 	},
-	disconnect: async (apikey) => {
+	disconnect: async (apiKey) => {
         let errors = []
 
         if ( apiKey == undefined ){
@@ -97,8 +97,9 @@ usersService = {
         if (errors.length > 0)
             throw errors
 
-        const index = activeApiKeys.indexOf(apikey);
-        activeApiKeys.splice(index,1)
+        const index = activeApiKeys.indexOf(apiKey);
+        if (index != -1)
+            activeApiKeys.splice(index,1)
 
         return true;
 	},
