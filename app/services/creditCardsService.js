@@ -80,7 +80,7 @@ creditCardsService = {
 
         if (userId == undefined)
             errors.push(new InputError("userId", 'userId is undefined'));
-        if (id == undefined)
+        if (creditCardId == undefined)
             errors.push(new InputError("id", 'id is undefined'));
         if (errors.length > 0)
             throw errors

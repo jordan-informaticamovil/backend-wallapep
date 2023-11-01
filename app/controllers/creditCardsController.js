@@ -38,7 +38,7 @@ creditCartsController = {
     },
     deleteCreditCard: async (req, res) => {
         try {
-            let {id} = req.body
+            let { id } = req.params
             let userId = req.infoInApiKey.id
             const answer = await creditCardsService.deleteCreditCard( userId,id)
             return res.json(answer)
