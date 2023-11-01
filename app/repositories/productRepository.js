@@ -35,7 +35,7 @@ productsRepository = {
         try{
             await database.connect();
             modifiedInfo = await database.query("UPDATE products SET title=?, description=?, price=?, category=? WHERE id=?",
-                [title, description, price, productId, category])
+                [title, description, price, category, productId])
             await database.disconnect();
         } catch (e){
             await database.disconnect();
