@@ -40,7 +40,7 @@ transactionService = {
         if ( productId == null) {
             transactions = await transactionRepository.getTransactions(userId);
         } else {
-            transactions = await transactionRepository.getTransactionsByProductId(userId, productId);
+            transactions = await transactionRepository.getTransactionsByUserIdAndProductId(userId, productId);
         }
 
         if (transactions == null)
@@ -88,7 +88,7 @@ transactionService = {
             throw errors
         }
 
-        let productTransactions = await transactionRepository.getTransactionsByProduct(productId);
+        let productTransactions = await transactionRepository.getTransactionsByProductId(productId);
         if (productTransactions == null){
             errors.push(new LogicError('Error when get the transactions'));
             throw errors

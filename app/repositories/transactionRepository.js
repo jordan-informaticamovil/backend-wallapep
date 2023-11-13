@@ -29,13 +29,27 @@ transactionRepository = {
         }
         return transactions
     },
-    getTransactionsByProductId: async (userId, productId) => {
+    getTransactionsByUserIdAndProductId: async (userId, productId) => {
         let transactions = null;
 
         try{
             await database.connect();
             transactions = await database.query("SELECT transactions.* , products.* , transactions.id as tid  FROM transactions LEFT JOIN products ON products.id = transactions.productId WHERE (transactions.buyerId = ? OR transactions.sellerId = ?) " +
                 "AND productId = ?",[userId,userId,productId])
+            await database.disconnect();
+        } catch (e){
+            await database.disconnect();
+            console.log(e) // ERROR IN DATABASE OR SQL
+        }
+        return transactions
+    },
+    getTransactionsByProductId: async (productId) => {
+        let transactions = null;
+
+        try{
+            await database.connect();
+            transactions = await database.query("SELECT transactions.* , products.* , transactions.id as tid  FROM transactions LEFT JOIN products ON products.id = transactions.productId WHERE " +
+                " productId = ?",[productId])
             await database.disconnect();
         } catch (e){
             await database.disconnect();
