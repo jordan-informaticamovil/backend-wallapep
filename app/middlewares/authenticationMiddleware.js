@@ -5,7 +5,7 @@ let authenticationMiddleware = (req, res, next) => {
     console.log("middleware execution")
 
 	let apiKey = req.headers.apikey 
-	if ( apiKey == undefined ){
+	if ( apiKey == undefined || apiKey == "null" ){
 		res.status(401).json({ errors: [{ msg:"no apiKey"}] });
 		return 
 	}
