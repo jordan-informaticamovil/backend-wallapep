@@ -127,7 +127,8 @@ usersService = {
             id: user.id,
             name: user.name,
             email:user.email,
-            country:user.country
+            country:user.country,
+            postalCode: user.postalCode
         }
         return userDAO
     },
