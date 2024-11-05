@@ -12,11 +12,11 @@ productsController = {
 	},
 	putProduct: async (req, res) => {
 		try {
-			let { title, description, price } = req.body
+			let { title, description, price, category } = req.body
 			productId = req.params.id
 			userId = req.infoInApiKey.id
 
-			const modified = await productService.putProduct(userId, productId, title, description, price)
+			const modified = await productService.putProduct(userId, productId, title, description, price, category)
 			return res.json({"modified": modified})
 		}
 		catch (errors) {
